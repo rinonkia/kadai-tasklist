@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="center jumbotron">
-        <div class="text-center">
-            <h1>welcome to the tasklist</h1>
-            {!! link_to_route('signup.get', 'Sign up now!', ['class' => 'btn btn-primary btn-lg']) !!}
+    @if (Auth::check())
+        <?php $user = Auth::user(); ?>
+        {{ $user->name }}
+    
+    @else
+        <div class="center jumbotron">
+            <div class="text-center">
+                <h1>welcome to the tasklist</h1>
+                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-primary btn-lg']) !!}
+            </div>
         </div>
-    </div>
+    @endif
 @endsection
