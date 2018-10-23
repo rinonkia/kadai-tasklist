@@ -28,7 +28,7 @@ class TasksController extends Controller
             return view('tasks.index', $data);
             
         } else {
-            return view('welcome');
+            return redirect('/');
         }
     }
 
@@ -93,7 +93,7 @@ class TasksController extends Controller
             return view('tasks.show', [
             'task' => $task]);
         } else {
-            return view('/');
+            return redirect('/');
         }
     }
 
@@ -111,7 +111,7 @@ class TasksController extends Controller
             return view('tasks.edit', [
             'task' => $task,]);
         } else {
-            return view('/');
+            return redirect('/');
         }
     }
 
