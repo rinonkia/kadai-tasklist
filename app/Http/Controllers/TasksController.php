@@ -28,7 +28,7 @@ class TasksController extends Controller
             return view('tasks.index', $data);
             
         } else {
-            return redirect('/');
+            return view('welcome');
         }
     }
 
