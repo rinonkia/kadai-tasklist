@@ -124,15 +124,18 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        if (\Auth::id() === $task->user_id) {
+            
+            $request->validate([
             'status' => 'required | max:10',
             'content' => 'required | max:191'
             ]);
         
-        $task = Task::find($id);
-        $task->status = $request->status;
-        $task->content = $request->content;
-        $task->save();
+            $task = Task::find($id);
+            $task->status = $request->status;
+            $task->content = $request->content;
+            $task->save();
+        }
         
         return redirect('/');
     }
@@ -149,9 +152,9 @@ class TasksController extends Controller
         
         if (\Auth::id() === $task->user_id) {
             $task->delete();
-            return redirect('/');
-        } else {
-            return redirect('/');
-        }
+        } 
+        
+        return redirect('/');
+        
     }
 }
